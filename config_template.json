@@ -1,0 +1,7 @@
+{
+  "gitlab_url": "https://gitlab.com/",
+  "gitlab_token": "YOUR_TOKEN",
+  "project_id_prefix": "goldmine-run",
+  "branch_regex": "^[fb]\\/(?P<issue>GOL-\\d+)-?(?P<message>.*)$",
+  "maximum_required_approvers_count": 2
+}

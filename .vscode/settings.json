@@ -1,0 +1,7 @@
+{
+    "python.venvPath": ".venv",
+    "python.pythonPath": ".venv/bin/python",
+    "python.jediEnabled": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true
+}
