@@ -79,6 +79,10 @@ def print_repo_name(name):
   print(f'The repo name: {name}')
 
 
+def print_project_id(project_id):
+  print(f'The project id: {project_id}')
+
+
 def print_current_branch(name):
   print(f'The current branch: {name}')
 

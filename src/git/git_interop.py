@@ -8,6 +8,10 @@ def get_repo(path):
   return brigit.Git(path)
 
 
+def get_first_remote_url(repo):
+  return repo.remote('-v').split('\n')[0].replace('\t', ' ').split(' ')[1]
+
+
 def get_repo_name(repo):
   path = repo.__call__('rev-parse', '--show-toplevel').strip()
   return os.path.basename(path)

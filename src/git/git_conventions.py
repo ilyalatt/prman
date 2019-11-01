@@ -7,6 +7,12 @@ import re
 WIP_BRANCH_NAME_SUFFIX = '-wip'
 
 
+def extract_gitlab_project_id(remote):
+  match = re.search('git@gitlab.com:(?P<project_id>.+?)\.git', remote)
+  assert not match is None
+  return match.group('project_id')
+
+
 def is_wip_branch(branch_name):
   return branch_name.endswith(WIP_BRANCH_NAME_SUFFIX)
 

@@ -17,8 +17,10 @@ def main():
   repo_name = get_repo_name(repo)
   print_repo_name(repo_name)
 
-  project_id_prefix = config['project_id_prefix']
-  project_id = f'{project_id_prefix}/{repo_name}'
+  remote_url = get_first_remote_url(repo)
+  project_id = extract_gitlab_project_id(remote_url)
+  print_project_id(project_id)
+
   current_branch = get_current_branch(repo)
   print_current_branch(current_branch)
 
