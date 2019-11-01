@@ -2,3 +2,5 @@ __pycache__
 .venv
 .ropeproject
 config.json
+bundle
+prman.snap

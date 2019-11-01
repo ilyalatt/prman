@@ -34,7 +34,8 @@ A Pull Request is done!
 
 ## How to install it?
 
-* Ensure you have `pipenv` and `python3` installed (the required version is python 3.7.3 but you can change the version in `Pipfile`).
+* `snap install prman --classic`.
+* If you type `prman` and get `command not found` the run `echo 'export PATH="$PATH:/snap/bin"' >> ~/.bashrc && source ~/.bashrc`.
 * Go to [GitLab Access Tokens UI](https://gitlab.com/profile/personal_access_tokens).
 * Name: `prman`, Scopes: `api`, Create personal access token.
 * Create `config.json` based on `config_template.json` and replace `gitlab_token` with your token.

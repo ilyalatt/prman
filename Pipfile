@@ -14,7 +14,6 @@ colorama = "*"
 brigit = {git = "git://github.com/Kozea/brigit.git"}
 pyrecord = "*"
 python-gitlab = "*"
-parmapper = {git = "https://github.com/Jwink3101/parmapper"}
 
 [requires]
-python_version = "3.7.3"
+python_version = "3.7"
