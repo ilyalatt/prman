@@ -4,9 +4,11 @@ Usage:
   prman config get <key>
   prman config set <key> <value>
   prman [-m <message>|--message <message>]
+  prman (-h | --help)
+  prman --version
 """
 from docopt import docopt
 
 
-def read_args():
-  return docopt(__doc__, version='prman 0.1.0')
+def read_args(version):
+  return docopt(__doc__, version=version)

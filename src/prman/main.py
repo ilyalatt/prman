@@ -15,7 +15,7 @@ __version__ = "0.1.3"
 
 
 def main():
-  args = read_args()
+  args = read_args(__version__)
   if args['config']:
     key = args['<key>']
     value = args.get('<value>', None)
