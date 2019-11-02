@@ -40,27 +40,27 @@ def main():
   current_branch = get_current_branch(repo)
   print_current_branch(current_branch)
 
-  mr_name = get_mr_name(
+  pr_name = get_pr_name(
     config['conventions.pr.branch_regex'],
     config['conventions.pr.template'],
     current_branch
   )
-  if mr_name is None:
+  if pr_name is None:
     print_current_branch_has_bad_format()
     return
-  print_mr_name(mr_name)
+  print_pr_name(pr_name)
 
   print_fetching_project()
   gl_client = init_gitlab_client(config['gitlab.url'], config['gitlab.token'])
   project = get_project(gl_client, project_id)
 
   print_fetching_prs()
-  mrs = get_mrs_list(project)
+  prs = get_prs_list(project)
 
-  mrs_for_current_branch = pipe(mrs, filter(lambda x: x.source_branch == current_branch), list)
-  mr_for_current_branch = None if len(mrs_for_current_branch) == 0 else mrs_for_current_branch[0]
-  if not mr_for_current_branch is None:
-    print_mr_is_already_created(current_branch, mr_for_current_branch.web_url)
+  prs_for_current_branch = pipe(prs, filter(lambda x: x.source_branch == current_branch), list)
+  pr_for_current_branch = None if len(prs_for_current_branch) == 0 else prs_for_current_branch[0]
+  if not pr_for_current_branch is None:
+    print_pr_is_already_created(current_branch, pr_for_current_branch.web_url)
     return
 
   print_fetching_users()
@@ -71,22 +71,22 @@ def main():
   print_pushing_to_origin()
   push_origin(repo)
 
-  print_creating_mr()
+  print_creating_pr()
   maximum_required_approvers_count = int(config['conventions.maximum_required_approvers_count'])
-  mr_message = args['<message>'] if args.get('-m', False) or args.get('--message', False) else None
-  mr = create_mr(
+  pr_message = args['<message>'] if args.get('-m', False) or args.get('--message', False) else None
+  pr = create_pr(
     maximum_required_approvers_count,
     gl_client,
     project,
     current_branch,
     'master',
-    mr_name,
-    mr_message,
+    pr_name,
+    pr_message,
     approver_ids
   )
 
-  mr_web_url = mr.web_url
-  print_mr_is_created(mr_web_url)
+  pr_web_url = pr.web_url
+  print_pr_is_created(pr_web_url)
 
 
 if __name__ == '__main__':

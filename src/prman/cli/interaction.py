@@ -50,7 +50,7 @@ def print_commits(commits):
   ))
 
 
-def select_commits_to_make_mrs(commits):
+def select_commits_to_make_prs(commits):
   print('Select commits to make PR\'s:')
   print_commits(commits)
   return choose_items(commits, lambda x: x.message)
@@ -87,7 +87,7 @@ def print_current_branch(name):
   print(f'The current branch: {name}')
 
 
-def print_mr_name(name):
+def print_pr_name(name):
   print(f'The PR name: {name}')
 
 
@@ -99,7 +99,7 @@ def print_fetching_prs():
   print('Fetching PR\'s...')
 
 
-def print_mr_is_already_created(branch_name, web_url):
+def print_pr_is_already_created(branch_name, web_url):
   print_red(f'PR for \'{branch_name}\' is already created:')
   print(web_url)
 
@@ -112,7 +112,7 @@ def print_pushing_to_origin():
   print('Pushing to the origin...')
 
 
-def print_creating_mr():
+def print_creating_pr():
   print('Creating the PR...')
 
 
@@ -120,5 +120,5 @@ def print_current_branch_has_bad_format():
   print_red(f'The current branch name has syntax that is incompatible with \'conventions.pr.branch_regex\'.')
 
 
-def print_mr_is_created(mr_web_url):
-  print(f'The PR is created: {mr_web_url}')
+def print_pr_is_created(pr_web_url):
+  print(f'The PR is created: {pr_web_url}')

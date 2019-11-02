@@ -26,7 +26,7 @@ def commit_to_branch_name(commit_message):
   return commit_message.replace(' ', '-')
 
 
-def get_wip_branch_mr_branch(wip_branch_prefix, commit_message):
+def get_wip_branch_pr_branch(wip_branch_prefix, commit_message):
   commit_branch_name = commit_to_branch_name(commit_message)
   return f'{wip_branch_prefix}-{commit_branch_name}'
 
@@ -35,7 +35,7 @@ def filter_wip_commits(repo, wip_branch_prefix, commits):
   return pipe(
     commits,
     filter(lambda x: not is_branch_exists(repo,
-      get_wip_branch_mr_branch(wip_branch_prefix, x.message)
+      get_wip_branch_pr_branch(wip_branch_prefix, x.message)
     )),
     list
   )

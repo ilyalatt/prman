@@ -28,7 +28,7 @@ def get_project_users_except_me_and_ci(client, project):
   )
 
 
-def get_mrs_list(project):
+def get_prs_list(project):
   return pipe(
     project.mergerequests.list(state='opened'),
     map(lambda x: x.iid),
@@ -37,9 +37,9 @@ def get_mrs_list(project):
   )
 
 
-def create_mr(maximum_required_approvers_count, client, project, source_branch, target_branch, title, message, approver_ids):
+def create_pr(maximum_required_approvers_count, client, project, source_branch, target_branch, title, message, approver_ids):
   user = get_current_user(client)
-  mr_create_req = {
+  pr_create_req = {
     'source_branch': source_branch,
     'target_branch': target_branch,
     'title': title,
@@ -48,12 +48,12 @@ def create_mr(maximum_required_approvers_count, client, project, source_branch, 
     'assignee_ids': [user.id] + approver_ids,
   }
   if not message is None:
-    mr_create_req['description'] = message
+    pr_create_req['description'] = message
   if maximum_required_approvers_count != -1:
     approvals_before_merge = min(maximum_required_approvers_count, len(approver_ids))
-    mr_create_req['approvals_before_merge'] = approvals_before_merge
-  mr = project.mergerequests.create(mr_create_req)
+    pr_create_req['approvals_before_merge'] = approvals_before_merge
+  pr = project.mergerequests.create(pr_create_req)
 
-  mr.approvals.set_approvers() # set_approvers does not work without it
-  mr.approvals.set_approvers(approver_ids)
-  return mr
+  pr.approvals.set_approvers() # set_approvers does not work without it
+  pr.approvals.set_approvers(approver_ids)
+  return pr

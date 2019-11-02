@@ -1,7 +1,7 @@
 import re
 
 
-def get_mr_name(branch_regex, template, branch_name):
+def get_pr_name(branch_regex, template, branch_name):
   match = re.search(branch_regex, branch_name)
   if match is None:
     return None
