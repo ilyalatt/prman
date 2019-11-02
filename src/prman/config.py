@@ -1,6 +1,6 @@
 # pylint: disable=unused-wildcard-import
 import os
-import json
+import jstyleson
 import sys
 from .cli.colorized_print import *
 
@@ -8,7 +8,7 @@ from .cli.colorized_print import *
 def read_json_file(file_path):
   with open(file_path, 'r') as file:
     file_content = file.read()
-  return json.loads(file_content)
+  return jstyleson.loads(file_content)
 
 
 def write_json_file(file_path, config):
@@ -18,12 +18,12 @@ def write_json_file(file_path, config):
 
 def get_config_pathes():
   script_dir = os.path.dirname(os.path.abspath(__file__))
-  config_base_path = os.path.join(script_dir, 'config.base.json')
+  config_base_path = os.path.join(script_dir, 'config.base.jsonc')
 
   # because of __main__ hack
   if not os.path.exists(config_base_path):
     script_dir = os.path.dirname(script_dir)
-    config_base_path = os.path.join(script_dir, 'config.base.json')
+    config_base_path = os.path.join(script_dir, 'config.base.jsonc')
 
   app_dir = os.path.expanduser('~/.prman')
   if not os.path.exists(app_dir):
@@ -41,7 +41,7 @@ def add_config_kvp(key, value):
     sys.exit(1)
   config = read_json_file(config_path) if os.path.exists(config_path) else { }
   config[key] = value
-  config_json = json.dumps(config, indent=2)
+  config_json = jstyleson.dumps(config, indent=2)
 
   write_json_file(config_path, config_json)
 

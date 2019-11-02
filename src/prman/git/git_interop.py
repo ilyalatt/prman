@@ -6,7 +6,12 @@ from pyrecord import Record
 
 
 def get_repo(path):
-  return brigit.Git(path)
+  try:
+    repo = brigit.Git(path)
+    repo.status()
+    return repo
+  except brigit.GitException:
+    return None
 
 
 def get_first_remote_url(repo):

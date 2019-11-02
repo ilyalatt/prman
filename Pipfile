@@ -18,6 +18,7 @@ pyrecord = "*"
 python-gitlab = "*"
 docopt = "*"
 brigit = "*"
+jstyleson = "*"
 
 [requires]
 python_version = "3.7"

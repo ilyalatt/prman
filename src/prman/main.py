@@ -29,24 +29,30 @@ def main():
 
   config = read_config()
 
-  repo = get_repo(os.getcwd())
+  repo_path = os.getcwd()
+  repo = get_repo(repo_path)
+  if repo is None:
+    print_dir_is_not_repo(repo_path)
+    return
   repo_name = get_repo_name(repo)
   print_repo_name(repo_name)
 
   remote_url = get_first_remote_url(repo)
   project_id = extract_gitlab_project_id(remote_url)
+  if project_id is None:
+    print_repo_gitlab_project_id_can_not_be_extracted(remote_url)
+    return
   print_project_id(project_id)
 
   current_branch = get_current_branch(repo)
   print_current_branch(current_branch)
 
   pr_name = get_pr_name(
-    config['conventions.pr.branch_regex'],
-    config['conventions.pr.template'],
+    config['conventions.branch_to_pr_mappings'],
     current_branch
   )
   if pr_name is None:
-    print_current_branch_has_bad_format()
+    print_current_branch_can_not_be_mapped_to_pr_name()
     return
   print_pr_name(pr_name)
 

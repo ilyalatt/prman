@@ -9,8 +9,7 @@ WIP_BRANCH_NAME_SUFFIX = '-wip'
 
 def extract_gitlab_project_id(remote):
   match = re.search(r'git@gitlab.com:(?P<project_id>.+?)\.git', remote)
-  assert not match is None
-  return match.group('project_id')
+  return None if match is None else match.group('project_id')
 
 
 def is_wip_branch(branch_name):

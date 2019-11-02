@@ -4,10 +4,11 @@
 
 ```
 > prman -m "This PR is created with prman!"
-The repo name: simulation
+The repository name: simulation
 The project id: oilrig/simulation
 The current branch: f/OIL-123-add-tests
 The PR name: OIL 123: add tests
+Fetching the project...
 Fetching PR's...
 Fetching approvers...
 Select approvers:
@@ -17,7 +18,8 @@ Select approvers:
 > fisher;choi
 Pushing to the origin...
 Creating the PR...
-The PR is created: https://gitlab.com/oilrig/simulation/merge_requests/42
+The PR is created:
+https://gitlab.com/oilrig/simulation/merge_requests/42
 ```
 
 ## Why?

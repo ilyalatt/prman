@@ -75,8 +75,16 @@ def select_approvers(users):
   return choose_items(users, get_user_str)
 
 
+def print_dir_is_not_repo(path):
+  print_red(f'Directory \'{path}\' is not a git repository.')
+
+
 def print_repo_name(name):
-  print(f'The repo name: {name}')
+  print(f'The repository name: {name}')
+
+
+def print_repo_gitlab_project_id_can_not_be_extracted(remote_url):
+  print_red(f'Can not extract GitLab project id from remote \'{remote_url}\'.')
 
 
 def print_project_id(project_id):
@@ -116,9 +124,10 @@ def print_creating_pr():
   print('Creating the PR...')
 
 
-def print_current_branch_has_bad_format():
-  print_red(f'The current branch name has syntax that is incompatible with \'conventions.pr.branch_regex\'.')
+def print_current_branch_can_not_be_mapped_to_pr_name():
+  print_red(f'The current branch name is incompatible with \'conventions.branch_to_pr_mappings\'.')
 
 
 def print_pr_is_created(pr_web_url):
-  print(f'The PR is created: {pr_web_url}')
+  print_green('The PR is created:')
+  print(pr_web_url)

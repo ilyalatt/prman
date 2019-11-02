@@ -1,4 +1,4 @@
 include README.md
 include LICENSE
 include requirements.txt
-include src/prman/config.base.json
+include src/prman/config.base.jsonc
