@@ -8,11 +8,8 @@
             "name": "Run",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceRoot}/src/main.py",
-            "args": [
-              "--config", "${workspaceRoot}/config.json",
-              "--dir", "~/dev/root/control_server",
-            ]
+            "program": "${workspaceRoot}/prman/__main__.py",
+            "cwd": "${workspaceRoot}/../root/control_server",
         }
     ]
 }

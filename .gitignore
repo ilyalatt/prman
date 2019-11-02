@@ -1,6 +1,7 @@
 __pycache__
 .venv
 .ropeproject
-config.json
-bundle
-prman.snap
+build
+dist
+*egg-info
+requirements.txt

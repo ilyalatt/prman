@@ -1,3 +1,4 @@
+# pylint: disable=unused-wildcard-import
 import brigit
 from toolz.curried import *
 import os
@@ -9,7 +10,7 @@ def get_repo(path):
 
 
 def get_first_remote_url(repo):
-  return repo.remote('-v').split('\n')[0].replace('\t', ' ').split(' ')[1]
+  return repo.remote('-v').rstrip().split('\n')[0].replace('\t', ' ').split(' ')[1]
 
 
 def get_repo_name(repo):
@@ -45,7 +46,7 @@ def is_branch_exists(repo, branch_name):
     return False
 
 
-def is_git_cache_empty():
+def is_git_cache_empty(repo):
   output = repo.status()
   return 'working tree clean' in output
 

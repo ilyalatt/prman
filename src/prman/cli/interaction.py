@@ -87,6 +87,14 @@ def print_current_branch(name):
   print(f'The current branch: {name}')
 
 
+def print_mr_name(name):
+  print(f'The PR name: {name}')
+
+
+def print_fetching_project():
+  print('Fetching the project...')
+
+
 def print_fetching_prs():
   print('Fetching PR\'s...')
 
@@ -108,8 +116,8 @@ def print_creating_mr():
   print('Creating the PR...')
 
 
-def print_current_branch_has_bad_format(branch_name):
-  print_red(f'The current branch should have \'f/GOL-123\' like syntax but got \'{branch_name}\'.')
+def print_current_branch_has_bad_format():
+  print_red(f'The current branch name has syntax that is incompatible with \'conventions.pr.branch_regex\'.')
 
 
 def print_mr_is_created(mr_web_url):

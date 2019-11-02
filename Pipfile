@@ -7,13 +7,17 @@ verify_ssl = true
 autopep8 = "*"
 pylint = "*"
 rope = "*"
+setuptools = "*"
+wheel = "*"
+twine = "*"
 
 [packages]
 toolz = "*"
 colorama = "*"
-brigit = {git = "git://github.com/Kozea/brigit.git"}
 pyrecord = "*"
 python-gitlab = "*"
+docopt = "*"
+brigit = "*"
 
 [requires]
 python_version = "3.7"

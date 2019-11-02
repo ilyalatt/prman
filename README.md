@@ -4,7 +4,8 @@
 
 ```
 > prman
-The repo name: control_server
+The repo name: simulation
+The project id: oilrig/simulation
 The current branch: f/GOL-123-some-description
 Fetching PR's...
 Fetching approvers...
@@ -15,7 +16,7 @@ Select approvers:
 > fisher;choi
 Pushing to the origin...
 Creating the PR...
-The PR is created: https://gitlab.com/goldmine-run/control_server/merge_requests/42
+The PR is created: https://gitlab.com/oilrig/simulation/merge_requests/42
 ```
 
 ## Why?
@@ -34,12 +35,13 @@ A Pull Request is done!
 
 ## How to install it?
 
-* `snap install prman --classic`.
-* If you type `prman` and get `command not found` the run `echo 'export PATH="$PATH:/snap/bin"' >> ~/.bashrc && source ~/.bashrc`.
+* Install [pipx](https://pipxproject.github.io/pipx/).
+It is like a pip+venv for CLI apps.
+`python3 -m pip install --user pipx`.
+* `pipx install prman`.
 * Go to [GitLab Access Tokens UI](https://gitlab.com/profile/personal_access_tokens).
-* Name: `prman`, Scopes: `api`, Create personal access token.
-* Create `config.json` based on `config_template.json` and replace `gitlab_token` with your token.
-* Run `source setup_bash_alias.sh`.
+* Name: `prman`; Scopes: `api`; Create personal access token.
+* `prman config set gitlab.token YOUR_TOKEN` (a config is stored in `~/.prman/config.json`).
 
 ## How to select approvers?
 

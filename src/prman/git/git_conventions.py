@@ -8,7 +8,7 @@ WIP_BRANCH_NAME_SUFFIX = '-wip'
 
 
 def extract_gitlab_project_id(remote):
-  match = re.search('git@gitlab.com:(?P<project_id>.+?)\.git', remote)
+  match = re.search(r'git@gitlab.com:(?P<project_id>.+?)\.git', remote)
   assert not match is None
   return match.group('project_id')
 
@@ -35,15 +35,7 @@ def filter_wip_commits(repo, wip_branch_prefix, commits):
   return pipe(
     commits,
     filter(lambda x: not is_branch_exists(repo,
-      get_wip_branch_pr_branch(wip_branch_prefix, x.message)
+      get_wip_branch_mr_branch(wip_branch_prefix, x.message)
     )),
     list
   )
-
-def get_issue_name_and_message(branch_regex, branch_name):
-  match = re.search(branch_regex, branch_name)
-  if match is None:
-    return None
-  issue_name = match.group('issue')
-  message = match.group('message').replace('-', ' ')
-  return (issue_name, message)

@@ -39,15 +39,19 @@ def get_mrs_list(project):
 
 def create_mr(maximum_required_approvers_count, client, project, source_branch, target_branch, title, approver_ids):
   user = get_current_user(client)
-  mr = project.mergerequests.create({
+  mr_create_req = {
     'source_branch': source_branch,
     'target_branch': target_branch,
     'title': title,
     'remove_source_branch': True,
     'squash': True,
     'assignee_ids': [user.id] + approver_ids,
-    'approvals_before_merge': min(maximum_required_approvers_count, len(approver_ids))
-  })
+  }
+  if maximum_required_approvers_count != -1:
+    approvals_before_merge = min(maximum_required_approvers_count, len(approver_ids))
+    mr_create_req['approvals_before_merge'] = approvals_before_merge
+  mr = project.mergerequests.create(mr_create_req)
+
   mr.approvals.set_approvers() # set_approvers does not work without it
   mr.approvals.set_approvers(approver_ids)
   return mr
