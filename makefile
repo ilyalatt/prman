@@ -1,5 +1,5 @@
 .RECIPEPREFIX +=
-.PHONY: сдуфт restore activate_venv build uninstall_local install_local publish
+.PHONY: clean restore activate_venv build uninstall_local install_local publish
 
 clean:
   rm -r build dist *.egg-info || true
@@ -17,7 +17,6 @@ build: clean restore activate_venv
 
 uninstall_local:
   pipx uninstall prman || true
-  rm /home/user/.local/bin/prman || true
 
 install_local: uninstall_local build
   pipx install --spec dist/*.tar.gz prman
