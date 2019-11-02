@@ -3,7 +3,7 @@
 Usage:
   prman config get <key>
   prman config set <key> <value>
-  prman
+  prman [-m <message>|--message <message>]
 """
 from docopt import docopt
 

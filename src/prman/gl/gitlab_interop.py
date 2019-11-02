@@ -37,7 +37,7 @@ def get_mrs_list(project):
   )
 
 
-def create_mr(maximum_required_approvers_count, client, project, source_branch, target_branch, title, approver_ids):
+def create_mr(maximum_required_approvers_count, client, project, source_branch, target_branch, title, message, approver_ids):
   user = get_current_user(client)
   mr_create_req = {
     'source_branch': source_branch,
@@ -47,6 +47,8 @@ def create_mr(maximum_required_approvers_count, client, project, source_branch, 
     'squash': True,
     'assignee_ids': [user.id] + approver_ids,
   }
+  if not message is None:
+    mr_create_req['description'] = message
   if maximum_required_approvers_count != -1:
     approvals_before_merge = min(maximum_required_approvers_count, len(approver_ids))
     mr_create_req['approvals_before_merge'] = approvals_before_merge

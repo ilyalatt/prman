@@ -3,10 +3,11 @@
 ## TLDR
 
 ```
-> prman
+> prman -m "This PR is created with prman!"
 The repo name: simulation
 The project id: oilrig/simulation
-The current branch: f/GOL-123-some-description
+The current branch: f/OIL-123-add-tests
+The PR name: OIL 123: add tests
 Fetching PR's...
 Fetching approvers...
 Select approvers:

@@ -73,6 +73,7 @@ def main():
 
   print_creating_mr()
   maximum_required_approvers_count = int(config['conventions.maximum_required_approvers_count'])
+  mr_message = args['<message>'] if args.get('-m', False) or args.get('--message', False) else None
   mr = create_mr(
     maximum_required_approvers_count,
     gl_client,
@@ -80,6 +81,7 @@ def main():
     current_branch,
     'master',
     mr_name,
+    mr_message,
     approver_ids
   )
 
