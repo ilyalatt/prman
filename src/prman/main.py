@@ -11,7 +11,7 @@ import logging
 import os
 
 
-__version__ = "0.1.3"
+__version__ = "0.1.4"
 
 
 def main():
@@ -46,6 +46,10 @@ def main():
 
   current_branch = get_current_branch(repo)
   print_current_branch(current_branch)
+
+  if current_branch == 'master':
+    print_can_not_create_pr_from_master()
+    return
 
   pr_name = get_pr_name(
     config['conventions.branch_to_pr_mappings'],

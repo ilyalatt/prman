@@ -95,6 +95,10 @@ def print_current_branch(name):
   print(f'The current branch: {name}')
 
 
+def print_can_not_create_pr_from_master():
+  print_red('Can not create a PR from master branch.')
+
+
 def print_pr_name(name):
   print(f'The PR name: {name}')
 
