@@ -28,9 +28,9 @@ def get_project_users_except_me_and_ci(client, project):
   )
 
 
-def get_prs_list(project):
+def get_opened_prs_for_branch(project, source_branch):
   return pipe(
-    project.mergerequests.list(state='opened'),
+    project.mergerequests.list(state='opened', source_branch=source_branch),
     map(lambda x: x.iid),
     map(project.mergerequests.get),
     list

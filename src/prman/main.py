@@ -73,9 +73,8 @@ def main():
   project = get_project(gl_client, project_id)
 
   print_fetching_prs()
-  prs = get_prs_list(project)
+  prs_for_current_branch = get_opened_prs_for_branch(project, current_branch)
 
-  prs_for_current_branch = pipe(prs, filter(lambda x: x.source_branch == current_branch), list)
   pr_for_current_branch = None if len(prs_for_current_branch) == 0 else prs_for_current_branch[0]
   if not pr_for_current_branch is None:
     print_pr_is_already_created(current_branch, pr_for_current_branch.web_url)
