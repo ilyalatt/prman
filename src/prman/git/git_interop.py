@@ -23,6 +23,14 @@ def get_repo_name(repo):
   return os.path.basename(path)
 
 
+def get_current_branch_commits_till_master_count(repo):
+  try:
+    log = list(repo.pretty_log('origin/master..HEAD'))
+  except IndexError: # brigit bug if the log is empty
+    log = []
+  return len(log)
+
+
 Commit = Record.create_type('Commit', 'hash', 'message')
 
 
@@ -54,11 +62,6 @@ def is_branch_exists(repo, branch_name):
 def is_git_working_tree_clean(repo):
   output = repo.status()
   return 'working tree clean' in output
-
-
-def is_git_current_branch_ahead(repo):
-  output = repo.status()
-  return 'branch is ahead' in output
 
 
 def cherry_pick(repo, commit_hash):

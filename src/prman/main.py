@@ -55,7 +55,7 @@ def main():
     print_repo_should_not_have_changes()
     return
 
-  if not is_git_current_branch_ahead(repo):
+  if get_current_branch_commits_till_master_count(repo) == 0:
     print_current_branch_is_not_ahead()
     return
 
