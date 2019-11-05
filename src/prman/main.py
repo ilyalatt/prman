@@ -51,6 +51,14 @@ def main():
     print_can_not_create_pr_from_master()
     return
 
+  if not is_git_working_tree_clean(repo):
+    print_repo_should_not_have_changes()
+    return
+
+  if not is_git_current_branch_ahead(repo):
+    print_current_branch_is_not_ahead()
+    return
+
   pr_name = get_pr_name(
     config['conventions.branch_to_pr_mappings'],
     current_branch

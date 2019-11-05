@@ -99,6 +99,14 @@ def print_can_not_create_pr_from_master():
   print_red('Can not create a PR from master branch.')
 
 
+def print_repo_should_not_have_changes():
+  print_red('There are changed files. Create a commit or delete them.')
+
+
+def print_current_branch_is_not_ahead():
+  print_red('The branch does not have new commits.')
+
+
 def print_pr_name(name):
   print(f'The PR name: {name}')
 

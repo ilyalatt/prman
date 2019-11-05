@@ -51,9 +51,14 @@ def is_branch_exists(repo, branch_name):
     return False
 
 
-def is_git_cache_empty(repo):
+def is_git_working_tree_clean(repo):
   output = repo.status()
   return 'working tree clean' in output
+
+
+def is_git_current_branch_ahead(repo):
+  output = repo.status()
+  return 'branch is ahead' in output
 
 
 def cherry_pick(repo, commit_hash):
