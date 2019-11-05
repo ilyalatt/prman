@@ -12,7 +12,6 @@
       "template": "${branch_name}"
     }
   ],
-  // this value = 2, count of approvers = 3 -> required approvers count = 2
-  // this value = 2, count of approvers = 1 -> required approvers count = 1
-  "conventions.maximum_required_approvers_count": "-1"
+  "conventions.approvers.required_count.set": "true",
+  "conventions.approvers.required_count.max": "2"
 }

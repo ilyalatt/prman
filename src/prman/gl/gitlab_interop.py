@@ -37,7 +37,7 @@ def get_prs_list(project):
   )
 
 
-def create_pr(maximum_required_approvers_count, client, project, source_branch, target_branch, title, message, approver_ids):
+def create_pr(approvers_required_count_config, client, project, source_branch, target_branch, title, message, approver_ids):
   user = get_current_user(client)
   pr_create_req = {
     'source_branch': source_branch,
@@ -49,9 +49,12 @@ def create_pr(maximum_required_approvers_count, client, project, source_branch, 
   }
   if not message is None:
     pr_create_req['description'] = message
-  if maximum_required_approvers_count != -1:
-    approvals_before_merge = min(maximum_required_approvers_count, len(approver_ids))
-    pr_create_req['approvals_before_merge'] = approvals_before_merge
+  if approvers_required_count_config['set']:
+    required_count = len(approver_ids)
+    max_required_count = approvers_required_count_config['max']
+    if max_required_count != -1:
+      required_count = min(required_count, max_required_count)
+    pr_create_req['approvals_before_merge'] = required_count
   pr = project.mergerequests.create(pr_create_req)
 
   pr.approvals.set_approvers() # set_approvers does not work without it

@@ -82,10 +82,14 @@ def main():
   push_origin(repo)
 
   print_creating_pr()
-  maximum_required_approvers_count = int(config['conventions.maximum_required_approvers_count'])
+  approvers_required_count_prefix = 'conventions.approvers.required_count.'
+  approvers_required_count_config = {
+    'set': config[approvers_required_count_prefix + 'set'] == 'true',
+    'max': int(config[approvers_required_count_prefix + 'max'])
+  }
   pr_message = args['<message>'] if args.get('-m', False) or args.get('--message', False) else None
   pr = create_pr(
-    maximum_required_approvers_count,
+    approvers_required_count_config,
     gl_client,
     project,
     current_branch,
