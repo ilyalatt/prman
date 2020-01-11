@@ -44,7 +44,7 @@ It is like a pip+venv for CLI apps.
 * `pipx install prman`.
 * Go to [GitLab Access Tokens UI](https://gitlab.com/profile/personal_access_tokens).
 * Name: `prman`; Scopes: `api`; Create personal access token.
-* `prman config set gitlab.token YOUR_TOKEN` (a config is stored in `~/.prman/config.json`).
+* `prman config set gitlab.token YOUR_TOKEN` (the config is stored in `~/.config/prman/config.json`).
 
 ## How to select approvers?
 

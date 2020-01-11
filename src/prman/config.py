@@ -25,10 +25,10 @@ def get_config_pathes():
     script_dir = os.path.dirname(script_dir)
     config_base_path = os.path.join(script_dir, 'config.base.jsonc')
 
-  app_dir = os.path.expanduser('~/.prman')
-  if not os.path.exists(app_dir):
-    os.mkdir(app_dir)
-  config_path = os.path.join(app_dir, 'config.json')
+  app_config_dir = os.path.expanduser('~/.config/prman')
+  if not os.path.exists(app_config_dir):
+    os.mkdir(app_config_dir)
+  config_path = os.path.join(app_config_dir, 'config.json')
 
   return (config_base_path, config_path)
 
