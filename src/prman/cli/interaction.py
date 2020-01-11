@@ -41,21 +41,6 @@ def choose_items(items, text_provider):
   )
 
 
-def print_commits(commits):
-  print(pipe(
-    commits,
-    enumerate,
-    map(lambda t: f"{t[0] + 1}. {t[1].message}"),
-    strJoin('\n')
-  ))
-
-
-def select_commits_to_make_prs(commits):
-  print('Select commits to make PR\'s:')
-  print_commits(commits)
-  return choose_items(commits, lambda x: x.message)
-
-
 def get_user_str(user):
   return f'{user.username} ({user.name})'
 
