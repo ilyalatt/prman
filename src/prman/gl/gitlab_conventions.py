@@ -9,7 +9,7 @@ def process_template_entry(var_provider, entry):
   dash_to_whitespace_res = re.sub('(dash_to_whitespace\\((?P<var_name>.+?)\\))', dash_to_whitespace_sub, entry)
   if dash_to_whitespace_res != entry:
     return dash_to_whitespace_res
-  else
+  else:
     return var_provider(entry)
 
 
@@ -29,9 +29,9 @@ def get_pr_name(mappings, branch_name):
       return None
     else:
       def var_provider(var_name):
-        s = match.group(x)
+        s = match.group(var_name)
         return "" if s is None else s
-      return process_template(lambda x: match.group(x), mapping['template'])
+      return process_template(var_provider, mapping['template'])
   for mapping in mappings:
     res = try_map(mapping)
     if not res is None:
