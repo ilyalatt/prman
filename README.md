@@ -4,6 +4,7 @@
 
 ```
 > prman -m "This PR is created with prman!"
+
 The repository name: simulation
 The project id: oilrig/simulation
 The current branch: f/OIL-123-add-tests
@@ -12,10 +13,12 @@ Fetching the project...
 Fetching PR's...
 Fetching approvers...
 Select approvers:
-1. jfisher (Jared Fisher)
-2. choiii (Peyton Choi)
-3. ldavid (Lemar David)
-> fisher;choi
+* lemar_david_99 (Lemar David)
+* jFISHER_20 (Jared Fisher)
+* choiii (Peyton Choi)
+
+> david_99;fisher_20;peyton
+
 Pushing to the origin...
 Creating the PR...
 The PR is created:
@@ -32,7 +35,7 @@ You should set approvers as assignee to give them email about your PR.
 
 It is a pure nightmare.
 Just run `prman` in your repo directory.
-Type approvers like `fisher;choi`.
+Type approvers like `david_99; fisher_20; peyton` (search by substring, multiple items divided by `;`).
 It pushes your branch to the origin automatically.
 A Pull Request is done!
 
@@ -45,11 +48,3 @@ It is like a pip+venv for CLI apps.
 * Go to [GitLab Access Tokens UI](https://gitlab.com/profile/personal_access_tokens).
 * Name: `prman`; Scopes: `api`; Create personal access token.
 * `prman config set gitlab.token YOUR_TOKEN` (the config is stored in `~/.config/prman/config.json`).
-
-## How to select approvers?
-
-* You can type a substring of an item by a query like `fisher`.
-* You can type multiple items separated by `;` like in a query `fisher;choi`.
-* You can select item by index with a query like `3`.
-* You can select an index range with a query like `3..5`.
-* Parts of a query can intersects like `2;1..3;fisher`.

@@ -17,7 +17,6 @@ def process_template(var_provider, template):
   def sub(m):
     entry = m.group(1)
     entry = entry[2:len(entry) - 1]
-    print(entry)
     return process_template_entry(var_provider, entry)
   return re.sub('(\\${.+?})', sub, template)
 

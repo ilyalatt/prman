@@ -9,32 +9,26 @@ strJoin = lambda sep: lambda strs: sep.join(strs)
 
 def choose_items(items, text_provider):
   s = input()
-  def parse_pair(s):
-    spl = s.strip().split('..')
-    assert len(spl) <= 2
-    if len(spl) == 1:
-      s = spl[0]
-      try:
-        return [int(s) - 1]
-      except ValueError:
-        indexes = pipe(
-          items,
-          map(text_provider),
-          enumerate,
-          filter(lambda t: s.lower() in t[1].lower()),
-          map(lambda t: t[0]),
-          list
-        )
-        if len(indexes) != 1:
-          print_red(f'Can not find an unique item with \'{s}\' substring. Found {len(indexes)} items.')
-          sys.exit()
-        return indexes
-    else:
-      return list(range(int(spl[0]) - 1, int(spl[1])))
+  if not s:
+    return []
+  def handle_approver_query(query):
+    query = query.strip().lower()
+    indexes = pipe(
+      items,
+      map(text_provider),
+      enumerate,
+      filter(lambda t: query in t[1].lower()),
+      map(lambda t: t[0]),
+      list
+    )
+    if len(indexes) != 1:
+      print_red(f'Can not find an unique item with \'{query}\' substring. Found {len(indexes)} items.')
+      sys.exit()
+    return indexes
 
   return pipe(
     s.split(';'),
-    mapcat(parse_pair),
+    mapcat(handle_approver_query),
     set,
     map(lambda idx: items[idx]),
     list
@@ -49,7 +43,7 @@ def print_users(users):
   print(pipe(
     users,
     enumerate,
-    map(lambda t: f"{t[0] + 1}. {get_user_str(t[1])}"),
+    map(lambda t: f"* {get_user_str(t[1])}"),
     strJoin('\n')
   ))
 
