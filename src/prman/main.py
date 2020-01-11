@@ -14,7 +14,7 @@ import os
 __version__ = "0.1.6"
 
 
-def main():
+def prman():
   args = read_args(__version__)
   if args['config']:
     key = args['<key>']
@@ -108,6 +108,13 @@ def main():
 
   pr_web_url = pr.web_url
   print_pr_is_created(pr_web_url)
+
+
+def main():
+  try:
+    prman()
+  except KeyboardInterrupt:
+    return
 
 
 if __name__ == '__main__':
