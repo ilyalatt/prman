@@ -4,12 +4,12 @@
     {
       // "f/OIL-123-a-b-c" -> "OIL-123: a b c"
       "regex": "^[fb]\\/(?P<issue>\\w+-\\d+)-?(?P<message>.+)$",
-      "template": "${issue}: ${message}"
+      "template": "${issue}: ${dash_to_whitespace(message)}"
     },
     {
       // "f/a-b-c" -> "a b c"
       "regex": "^[fb]\\/?(?P<branch_name>.+)$",
-      "template": "${branch_name}"
+      "template": "${dash_to_whitespace(branch_name)}"
     }
   ],
   "conventions.approvers.required_count.set": "true",
