@@ -11,7 +11,7 @@ import logging
 import os
 
 
-__version__ = "0.1.6"
+__version__ = "0.1.7"
 
 
 def prman():
@@ -51,8 +51,7 @@ def prman():
     print_can_not_create_pr_from_master()
     return
 
-  if not is_git_working_tree_clean(repo):
-    print_repo_should_not_have_changes()
+  if not is_git_working_tree_clean(repo) and not ask_to_ignore_changes():
     return
 
   if get_current_branch_commits_till_master_count(repo) == 0:

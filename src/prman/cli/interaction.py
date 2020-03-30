@@ -78,8 +78,10 @@ def print_can_not_create_pr_from_master():
   print_red('Can not create a PR from master branch.')
 
 
-def print_repo_should_not_have_changes():
-  print_red('There are changed files. Create a commit or delete them.')
+def ask_to_ignore_changes():
+  print_yellow('There are changed files. Maybe you forgot to create a commit. Do you want to continue [y/N]?')
+  s = input()
+  return s.lower() == 'y'
 
 
 def print_current_branch_is_not_ahead():
