@@ -10,6 +10,7 @@ rope = "*"
 setuptools = "*"
 wheel = "*"
 twine = "*"
+jeepney = "~=0.4.2"
 
 [packages]
 toolz = "*"

@@ -4,7 +4,7 @@ clean:
 	rm -r build dist *.egg-info || true
 
 restore:
-	if [ ! -d ".venv" ]; then PIPENV_VENV_IN_PROJECT=true pipenv install; fi
+	if [ ! -d ".venv" ]; then PIPENV_VENV_IN_PROJECT=true pipenv install --dev; fi
 
 activate_venv:
 	. .venv/bin/activate
