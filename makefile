@@ -1,26 +1,25 @@
-.RECIPEPREFIX +=
 .PHONY: clean restore activate_venv build uninstall_local install_local publish
 
 clean:
-  rm -r build dist *.egg-info || true
+	rm -r build dist *.egg-info || true
 
 restore:
-  if [ ! -d ".venv" ]; then PIPENV_VENV_IN_PROJECT=true pipenv sync; fi
+	if [ ! -d ".venv" ]; then PIPENV_VENV_IN_PROJECT=true pipenv install; fi
 
 activate_venv:
-  . .venv/bin/activate
+	. .venv/bin/activate
 
 build: clean restore activate_venv
-  pipenv lock -r > requirements.txt
-  python3 setup.py --quiet sdist bdist_wheel
-  rm requirements.txt
+	pipenv lock -r > requirements.txt
+	python3 setup.py --quiet sdist bdist_wheel
+	rm requirements.txt
 
 uninstall_local:
-  pipx uninstall prman || true
+	pipx uninstall prman || true
 
 install_local: uninstall_local build
-  pipx install --spec dist/*.tar.gz prman
+	pipx install --spec dist/*.tar.gz prman
 
 publish: build
-  pipenv run twine check dist/*
-  pipenv run twine upload dist/*
+	pipenv run twine check dist/*
+	pipenv run twine upload dist/*
